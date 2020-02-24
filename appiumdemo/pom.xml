@@ -2,33 +2,27 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>com.agileach</groupId>
 	<artifactId>appiumdemo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
 	<name>appiumdemo</name>
 	<url>http://maven.apache.org</url>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<log4j.version>2.13.0</log4j.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.11</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.appium</groupId>
 			<artifactId>java-client</artifactId>
 			<version>7.3.0</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
@@ -81,39 +75,30 @@
 		</dependency>
 	</dependencies>
 	<build>
-         <plugins>
-         <!-- 加入maven-surefire-plugin插件用来使用maven执行用例，其中suiteXmlFile配置的就是testNG用例执行文件的地址 -->
-         <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-surefire-plugin</artifactId>
-                  <version>3.0.0-M4</version>
-                  <configuration>
-                      <suiteXmlFiles>
-                          <suiteXmlFile>testng.xml</suiteXmlFile>
-                     </suiteXmlFiles>
-                     <!-- 加入编码设置，否则生成的报告会中文乱码 -->
-                     <argLine>-Dfile.encoding=UTF-8</argLine>
-                 </configuration>
-             </plugin>
-             <!-- 添加插件,添加ReportNg的监听器，修改最后的TestNg的报告 -->
-             <plugin>
-                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-               <version>3.0.0-M4</version>
-               <configuration>
-                     <properties>
-                         <property>
-                             <name>usedefaultlisteners</name>
-                             <value>false</value>
-                         </property>
-                         <property>
-                             <name>listener</name>
-                             <value>org.uncommons.reportng.HTMLReporter</value>
-                         </property>
-                    </properties>
-                    <workingDirectory>target/</workingDirectory>
-                </configuration>
-            </plugin>
-         </plugins>
-     </build>	
+		<plugins>
+			<!-- 加入maven-surefire-plugin插件用来使用maven执行用例，其中suiteXmlFile配置的就是testNG用例执行文件的地址 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<properties>
+						<property>
+							<name>usedefaultlisteners</name>
+							<value>false</value>
+						</property>
+						<property>
+							<name>listener</name>
+							<value>org.uncommons.reportng.HTMLReporter</value>
+						</property>
+					</properties>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<!-- 加入编码设置，否则生成的报告会中文乱码 -->
+					<argLine>-Dfile.encoding=UTF-8</argLine>
+				</configuration>
+			</plugin>		
+		</plugins>
+	</build>
 </project>
